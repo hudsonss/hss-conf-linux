@@ -106,38 +106,27 @@ install_fonts_menu() {
 }
 
 # Função para personalizar o terminal
+# Função para customizar o terminal com o bashrc configurado
 customize_terminal() {
-    echo "Personalizando o terminal..."
-    cat <<EOF >> ~/.bashrc
+    echo "Baixando o bashrc personalizado..."
 
-# Prompt personalizado
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-alias bat='bat --theme=ansi-dark'
-OS_ICON=
+    # URL do seu arquivo bashrc configurado
+    BASHRC_URL="https://seu-repositorio-ou-url.com/bashrc"
 
-get_folder_icon() {
-    case "$PWD" in
-        */Desktop)    echo " " ;;  # Ícone para a área de trabalho
-        */Documents)  echo "󱔗" ;;  # Ícone para documentos
-        */Downloads)  echo " " ;;  # Ícone para downloads
-        */Music)      echo " " ;;  # Ícone para música
-        */Imagens)   echo " " ;;  # Ícone para imagens
-        */Videos)     echo " " ;;  # Ícone para vídeos
-        */Projects)   echo " " ;;  # Ícone para projetos
-        */.config)    echo " " ;;  # Ícone para configurações
-        */.local)     echo " " ;;  # Ícone para dados locais
-        */.cache)     echo " " ;;  # Ícone para cache
-        *)            echo "" ;;   # Ícone genérico para outros diretórios
-    esac
-}
+    # Baixar o arquivo bashrc
+    wget -O ~/.bashrc "$BASHRC_URL"
+    if [ $? -eq 0 ]; then
+        echo "bashrc personalizado baixado com sucesso!"
+    else
+        echo "Erro ao baixar o bashrc. Verifique a URL."
+        return
+    fi
 
-PS1="\[\033[41m\]\[\033[1;37m\]$OS_ICON \u \[\033[0m\]\[\033[44m\] \$(get_folder_icon)\[\033[44m\] \w\[\033[0m\] $ "
-
-EOF
+    # Aplicar as mudanças
     source ~/.bashrc
     echo "Terminal personalizado com sucesso!"
 }
+
 
 # Função para executar todas as ações
 run_all() {
