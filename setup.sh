@@ -111,7 +111,7 @@ customize_terminal() {
     echo "Baixando o bashrc personalizado..."
 
     # URL do seu arquivo bashrc configurado
-    BASHRC_URL="https://seu-repositorio-ou-url.com/bashrc"
+    BASHRC_URL="https://raw.githubusercontent.com/hudsonss/hss-conf-linux/refs/heads/main/.bashrc"
 
     # Baixar o arquivo bashrc
     wget -O ~/.bashrc "$BASHRC_URL"
